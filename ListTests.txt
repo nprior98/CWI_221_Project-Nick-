@@ -36,7 +36,8 @@ Define tests for the 22 change scenarios, in addition to the 3 given as examples
     add(X) throws no Exception
     add(-1, X) throws IndexOutOfBoundsException
     add(0, X) throws no Exception
-    add(1, X) throws IndexOutOfBoundsException
+    add(1, X) throws no Exception
+    add(2, X) throws IndexOutOfBoundsException
     removeFirst() returns A
     removeLast() returns A
     remove(A) returns A
@@ -68,7 +69,8 @@ Define tests for the 22 change scenarios, in addition to the 3 given as examples
     add(X) throws no Exception
     add(-1, X) throws IndexOutOfBoundsException
     add(0, X) throws no Exception
-    add(1, X) throws IndexOutOfBoundsException
+    add(1, X) throws no Exception
+    add(2, X) throws IndexOutOfBoundsException
     removeFirst() returns A
     removeLast() returns A
     remove(A) returns A
@@ -100,7 +102,8 @@ Define tests for the 22 change scenarios, in addition to the 3 given as examples
     add(X) throws no Exception
     add(-1, X) throws IndexOutOfBoundsException
     add(0, X) throws no Exception
-    add(1, X) throws IndexOutOfBoundsException
+    add(1, X) throws no Exception
+    add(2, X) throws IndexOutOfBoundsException
     removeFirst() returns A
     removeLast() returns A
     remove(A) returns A
@@ -132,7 +135,8 @@ Define tests for the 22 change scenarios, in addition to the 3 given as examples
     add(X) throws no Exception
     add(-1, X) throws IndexOutOfBoundsException
     add(0, X) throws no Exception
-    add(1, X) throws IndexOutOfBoundsException
+    add(1, X) throws no Exception
+    add(2, X) throws IndexOutOfBoundsException
     removeFirst() returns A
     removeLast() returns A
     remove(A) returns A
@@ -212,8 +216,8 @@ Define tests for the 22 change scenarios, in addition to the 3 given as examples
     removeFirst() returns A
     removeLast() returns B
     remove(A) returns A
-    remove(B) throws NoSuchElementException
-    remove(B) returns B
+	remove(B) returns B
+    remove(X) throws NoSuchElementException
     remove(-1) throws IndexOutOfBoundsException
     remove(0) returns A
     remove(1) returns B
@@ -390,7 +394,8 @@ Define tests for the 22 change scenarios, in addition to the 3 given as examples
     add(X) throws no Exception
     add(-1, X) throws IndexOutOfBoundsException
     add(0, X) throws no Exception
-    add(1, X) throws IndexOutOfBoundsException
+    add(1, X) throws no Exception
+    add(2, X) throws IndexOutOfBoundsException
     removeFirst() returns B
     removeLast() returns B
     remove(B) returns B
@@ -427,7 +432,7 @@ Define tests for the 22 change scenarios, in addition to the 3 given as examples
     add(1, X) throws no Exception
     add(2, X) throws no Exception
     add(3, X) throws no Exception
-	  add(4, X) throws IndexOutOfBoundsException
+	add(4, X) throws IndexOutOfBoundsException
     removeFirst() returns C
     removeLast() returns B
     remove(C) returns C
@@ -478,7 +483,7 @@ Define tests for the 22 change scenarios, in addition to the 3 given as examples
     add(1, X) throws no Exception
     add(2, X) throws no Exception
     add(3, X) throws no Exception
-	  add(4, X) throws IndexOutOfBoundsException
+	add(4, X) throws IndexOutOfBoundsException
     removeFirst() returns A
     removeLast() returns C
     remove(A) returns A
@@ -529,7 +534,7 @@ Define tests for the 22 change scenarios, in addition to the 3 given as examples
     add(1, X) throws no Exception
     add(2, X) throws no Exception
     add(3, X) throws no Exception
-	  add(4, X) throws IndexOutOfBoundsException
+	add(4, X) throws IndexOutOfBoundsException
     removeFirst() returns A
     removeLast() returns B
     remove(A) returns A
@@ -574,7 +579,8 @@ Define tests for the 22 change scenarios, in addition to the 3 given as examples
     add(X) throws no Exception
     add(-1, X) throws IndexOutOfBoundsException
     add(0, X) throws no Exception
-    add(1, X) throws IndexOutOfBoundsException
+    add(1, X) throws no Exception
+    add(2, X) throws IndexOutOfBoundsException
     removeFirst() returns B
     removeLast() returns B
     remove(B) returns B
@@ -606,7 +612,8 @@ Define tests for the 22 change scenarios, in addition to the 3 given as examples
     add(X) throws no Exception
     add(-1, X) throws IndexOutOfBoundsException
     add(0, X) throws no Exception
-    add(1, X) throws IndexOutOfBoundsException
+    add(1, X) throws no Exception
+    add(2, X) throws IndexOutOfBoundsException
     removeFirst() returns A
     removeLast() returns A
     remove(A) returns A
@@ -638,7 +645,8 @@ Define tests for the 22 change scenarios, in addition to the 3 given as examples
     add(X) throws no Exception
     add(-1, X) throws IndexOutOfBoundsException
     add(0, X) throws no Exception
-    add(1, X) throws IndexOutOfBoundsException
+    add(1, X) throws no Exception
+    add(2, X) throws IndexOutOfBoundsException
     removeFirst() returns B
     removeLast() returns B
     remove(B) returns B
@@ -670,7 +678,8 @@ Define tests for the 22 change scenarios, in addition to the 3 given as examples
     add(X) throws no Exception
     add(-1, X) throws IndexOutOfBoundsException
     add(0, X) throws no Exception
-    add(1, X) throws IndexOutOfBoundsException
+    add(1, X) throws no Exception
+    add(2, X) throws IndexOutOfBoundsException
     removeFirst() returns A
     removeLast() returns A
     remove(A) returns A
@@ -702,7 +711,8 @@ Define tests for the 22 change scenarios, in addition to the 3 given as examples
     add(X) throws no Exception
     add(-1, X) throws IndexOutOfBoundsException
     add(0, X) throws no Exception
-    add(1, X) throws IndexOutOfBoundsException
+    add(1, X) throws no Exception
+    add(2, X) throws IndexOutOfBoundsException
     removeFirst() returns B
     removeLast() returns B
     remove(B) returns B
@@ -734,7 +744,8 @@ Define tests for the 22 change scenarios, in addition to the 3 given as examples
     add(X) throws no Exception
     add(-1, X) throws IndexOutOfBoundsException
     add(0, X) throws no Exception
-    add(1, X) throws IndexOutOfBoundsException
+    add(1, X) throws no Exception
+    add(2, X) throws IndexOutOfBoundsException
     removeFirst() returns A
     removeLast() returns A
     remove(A) returns A
