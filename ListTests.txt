@@ -830,8 +830,8 @@ Define tests for the 22 change scenarios, in addition to the 3 given as examples
     removeFirst() returns A
     removeLast() returns B
     remove(A) returns A
-    remove(B) throws NoSuchElementException
     remove(B) returns B
+	remove(X) throws NoSuchElementException
     remove(-1) throws IndexOutOfBoundsException
     remove(0) returns A
     remove(1) returns B
