@@ -224,7 +224,7 @@ public class ListTester {
 		// Scenario: 27
 
 		// Scenario: 28
-		testSingleElementList(AB_remove0_B, "AB_remove0_B", LIST_B, STRING_B);
+		testSingleElementList(AB_removeB_A, "AB_removeB_A", LIST_A, STRING_A);
 		// Scenario: 29
 
 		// Scenario: 30
@@ -237,7 +237,7 @@ public class ListTester {
 		// Scenario: 17
 		testThreeElementList(AB_addToFrontC_CAB, "AB_addToFrontC_CAB", LIST_CAB, STRING_CAB);
 		// Scenario: 20
-		testThreeElementList(AB_add1C_ACB, "AB_add1C_ACB", LIST_ACB, STRING_ACB);
+		testThreeElementList(AB_addAfterCB_ABC, "AB_addAfterCB_ABC", LIST_ABC, STRING_ABC);
 		// Scenario: 23
 
 		// 2-element to changed 2-element via set()
@@ -437,7 +437,6 @@ public class ListTester {
 	 */
 	private IndexedUnsortedList<Integer> A_removeLast_emptyList() {
     	IndexedUnsortedList<Integer> list = newList();
-    	list.add(ELEMENT_A);
     	list.removeLast();
     	return list;
 	}
@@ -463,8 +462,7 @@ public class ListTester {
 	 * @return [] after remove(0)
 	 */
 	private IndexedUnsortedList<Integer> A_remove0_emptyList() {
-    	IndexedUnsortedList<Integer> list = newList();
-    	list.add(ELEMENT_A);
+    	IndexedUnsortedList<Integer> list = emptyList_addA_A();
     	list.remove(0);
     	return list;
 	}
@@ -483,9 +481,7 @@ public class ListTester {
 	 * @return [C,A,B] after addToFront(C)
 	 */
 	private IndexedUnsortedList<Integer> AB_addToFrontC_CAB() {
-    	IndexedUnsortedList<Integer> list = newList();
-    	list.add(ELEMENT_A);
-    	list.add(ELEMENT_B);
+    	IndexedUnsortedList<Integer> list = A_addToRearB_AB();
     	list.addToFront(ELEMENT_C);
     	return list;
 	}
@@ -497,15 +493,13 @@ public class ListTester {
 	 * 
 	 * @return [A,B,C] after addAfter(C,B)
 	 */
-	private IndexedUnsortedList<Integer> AB_add1C_ACB() {
+	private IndexedUnsortedList<Integer> AB_addAfterCB_ABC() {
     	IndexedUnsortedList<Integer> list = newList();
-    	list.add(ELEMENT_A);
-    	list.add(ELEMENT_B);
-    	list.add(1, ELEMENT_C);
+    	list.add(ELEMENT_C, ELEMENT_B);
     	return list;
 	}
 
-	private Scenario<Integer> AB_add1C_ACB = () -> AB_add1C_ACB();
+	private Scenario<Integer> AB_addAfterCB_ABC = () -> AB_addAfterCB_ABC();
 
 	/**
 	 * Scenario #23: [A,B] -> add(1,C) -> [A,C,B]
@@ -519,9 +513,7 @@ public class ListTester {
 	 * @return [B] after removeFirst()
 	 */
 	private IndexedUnsortedList<Integer> AB_removeFirst_B() {
-    	IndexedUnsortedList<Integer> list = newList();
-    	list.add(ELEMENT_A);
-    	list.add(ELEMENT_B);
+    	IndexedUnsortedList<Integer> list = A_addToRearB_AB();
     	list.removeFirst();
     	return list;
 	}
@@ -552,15 +544,13 @@ public class ListTester {
 	 * 
 	 * @return [A] after remove(B)
 	 */
-	private IndexedUnsortedList<Integer> AB_remove0_B() {
+	private IndexedUnsortedList<Integer> AB_removeB_A() {
     	IndexedUnsortedList<Integer> list = newList();
-    	list.add(ELEMENT_A);
-    	list.add(ELEMENT_B);
     	list.remove(0);
     	return list;
 	}
 
-	private Scenario<Integer> AB_remove0_B = () -> AB_remove0_B();
+	private Scenario<Integer> AB_removeB_A = () -> AB_removeB_A();
 
 	/**
 	 * Scenario #29: [A,B] -> remove(0) -> [B]
@@ -988,9 +978,9 @@ public class ListTester {
 					testAddToFront(scenario.build(), ELEMENT_X, Result.NoException));
 			printTest(scenarioName + "_testAddToRear", testAddToRear(scenario.build(), ELEMENT_X, Result.NoException));
 			printTest(scenarioName + "_testAddAfter" + contentsString.charAt(0),
-    				testAddAfter(scenario.build(), contents[0], ELEMENT_X, Result.NoException));
+    			testAddAfter(scenario.build(), contents[0], ELEMENT_X, Result.NoException));
 			printTest(scenarioName + "_testAddAfter" + contentsString.charAt(1),
-    				testAddAfter(scenario.build(), contents[1], ELEMENT_X, Result.NoException));
+    			testAddAfter(scenario.build(), contents[1], ELEMENT_X, Result.NoException));
 			printTest(scenarioName + "_testAddAfterX",
 					testAddAfter(scenario.build(), ELEMENT_X, ELEMENT_Z, Result.NoSuchElement));
 			printTest(scenarioName + "_testAdd", testAdd(scenario.build(), ELEMENT_X, Result.NoException));
@@ -1094,30 +1084,52 @@ public class ListTester {
 			String contentsString) {
 		System.out.printf("\nSCENARIO: %s\n\n", scenarioName);
 		try {
-			printTest(scenarioName + "_testAddToFront", testAddToFront(scenario.build(), ELEMENT_X, Result.NoException));
+			printTest(scenarioName + "_testAddToFront",
+					testAddToFront(scenario.build(), ELEMENT_X, Result.NoException));
 			printTest(scenarioName + "_testAddToRear", testAddToRear(scenario.build(), ELEMENT_X, Result.NoException));
-			printTest(scenarioName + "_testAddAfter" + contentsString.charAt(0), testAddAfter(scenario.build(), contents[0], ELEMENT_X, Result.NoException));
-			printTest(scenarioName + "_testAddAfter" + contentsString.charAt(1), testAddAfter(scenario.build(), contents[1], ELEMENT_X, Result.NoException));
-			printTest(scenarioName + "_testAddAfter" + contentsString.charAt(2), testAddAfter(scenario.build(), contents[2], ELEMENT_X, Result.NoException));
-			printTest(scenarioName + "_testAddAfter" + contentsString.charAt(3), testAddAfter(scenario.build(), contents[3], ELEMENT_X, Result.IndexOutOfBounds));
-			printTest(scenarioName + "_testAddAfterX", testAddAfter(scenario.build(), ELEMENT_X, ELEMENT_Z, Result.NoSuchElement));
+			printTest(scenarioName + "_testAddAfter" + contentsString.charAt(0),
+					testAddAfter(scenario.build(), contents[0], ELEMENT_X, Result.NoException));
+			printTest(scenarioName + "_testAddAfter" + contentsString.charAt(1),
+					testAddAfter(scenario.build(), contents[1], ELEMENT_X, Result.NoException));
+			printTest(scenarioName + "_testAddAfter" + contentsString.charAt(2),
+					testAddAfter(scenario.build(), contents[2], ELEMENT_X, Result.NoException));
+			printTest(scenarioName + "_testAddAfter" + contentsString.charAt(3),
+					testAddAfter(scenario.build(), contents[3], ELEMENT_X, Result.IndexOutOfBounds));
+			printTest(scenarioName + "_testAddAfterX",
+					testAddAfter(scenario.build(), ELEMENT_X, ELEMENT_Z, Result.NoSuchElement));
 			printTest(scenarioName + "_testAdd", testAdd(scenario.build(), ELEMENT_X, Result.NoException));
-			printTest(scenarioName + "_testAddAtIndexNeg1", testAddAtIndex(scenario.build(), -1, ELEMENT_X, Result.IndexOutOfBounds));
-			printTest(scenarioName + "_testAddAtIndex0", testAddAtIndex(scenario.build(), 0, ELEMENT_X, Result.NoException));
-			printTest(scenarioName + "_testAddAtIndex1", testAddAtIndex(scenario.build(), 1, ELEMENT_X, Result.NoException));
-			printTest(scenarioName + "_testAddAtIndex2", testAddAtIndex(scenario.build(), 2, ELEMENT_X, Result.NoException));
-			printTest(scenarioName + "_testAddAtIndex3", testAddAtIndex(scenario.build(), 3, ELEMENT_X, Result.NoException));
-			printTest(scenarioName + "_testRemoveFirst", testRemoveFirst(scenario.build(), contents[0], Result.MatchingValue));
-			printTest(scenarioName + "_testRemoveLast", testRemoveLast(scenario.build(), contents[2], Result.MatchingValue));
-			printTest(scenarioName + "_testRemove" + contentsString.charAt(0), testRemoveElement(scenario.build(), contents[0], Result.MatchingValue));
-			printTest(scenarioName + "_testRemove" + contentsString.charAt(1), testRemoveElement(scenario.build(), contents[1], Result.MatchingValue));
-			printTest(scenarioName + "_testRemove" + contentsString.charAt(2), testRemoveElement(scenario.build(), contents[2], Result.MatchingValue));
-			printTest(scenarioName + "_testRemoveX", testRemoveElement(scenario.build(), ELEMENT_X, Result.NoSuchElement));
-			printTest(scenarioName + "_testRemoveNeg1", testRemoveIndex(scenario.build(), -1, null, Result.IndexOutOfBounds));
-			printTest(scenarioName + "_testRemove0", testRemoveIndex(scenario.build(), 0, contents[0], Result.MatchingValue));
-			printTest(scenarioName + "_testRemove1", testRemoveIndex(scenario.build(), 1, contents[1], Result.MatchingValue));
-			printTest(scenarioName + "_testRemove2", testRemoveIndex(scenario.build(), 2, contents[2], Result.MatchingValue));
-			printTest(scenarioName + "_testRemove3", testRemoveIndex(scenario.build(), 3, null, Result.IndexOutOfBounds));
+			printTest(scenarioName + "_testAddAtIndexNeg1",
+					testAddAtIndex(scenario.build(), -1, ELEMENT_X, Result.IndexOutOfBounds));
+			printTest(scenarioName + "_testAddAtIndex0",
+					testAddAtIndex(scenario.build(), 0, ELEMENT_X, Result.NoException));
+			printTest(scenarioName + "_testAddAtIndex1",
+					testAddAtIndex(scenario.build(), 1, ELEMENT_X, Result.NoException));
+			printTest(scenarioName + "_testAddAtIndex2",
+					testAddAtIndex(scenario.build(), 2, ELEMENT_X, Result.NoException));
+			printTest(scenarioName + "_testAddAtIndex3",
+					testAddAtIndex(scenario.build(), 3, ELEMENT_X, Result.NoException));
+			printTest(scenarioName + "_testRemoveFirst",
+					testRemoveFirst(scenario.build(), contents[0], Result.MatchingValue));
+			printTest(scenarioName + "_testRemoveLast",
+					testRemoveLast(scenario.build(), contents[2], Result.MatchingValue));
+			printTest(scenarioName + "_testRemove" + contentsString.charAt(0),
+					testRemoveElement(scenario.build(), contents[0], Result.MatchingValue));
+			printTest(scenarioName + "_testRemove" + contentsString.charAt(1),
+					testRemoveElement(scenario.build(), contents[1], Result.MatchingValue));
+			printTest(scenarioName + "_testRemove" + contentsString.charAt(2),
+					testRemoveElement(scenario.build(), contents[2], Result.MatchingValue));
+			printTest(scenarioName + "_testRemoveX",
+					testRemoveElement(scenario.build(), ELEMENT_X, Result.NoSuchElement));
+			printTest(scenarioName + "_testRemoveNeg1",
+					testRemoveIndex(scenario.build(), -1, null, Result.IndexOutOfBounds));
+			printTest(scenarioName + "_testRemove0",
+					testRemoveIndex(scenario.build(), 0, contents[0], Result.MatchingValue));
+			printTest(scenarioName + "_testRemove1",
+					testRemoveIndex(scenario.build(), 1, contents[1], Result.MatchingValue));
+			printTest(scenarioName + "_testRemove2",
+					testRemoveIndex(scenario.build(), 2, contents[2], Result.MatchingValue));
+			printTest(scenarioName + "_testRemove3",
+					testRemoveIndex(scenario.build(), 3, null, Result.IndexOutOfBounds));
 			printTest(scenarioName + "_testSetNeg1", testSet(scenario.build(), -1, ELEMENT_X, Result.IndexOutOfBounds));
 			printTest(scenarioName + "_testSet0", testSet(scenario.build(), 0, ELEMENT_X, Result.NoException));
 			printTest(scenarioName + "_testSet1", testSet(scenario.build(), 1, ELEMENT_X, Result.NoException));
@@ -1128,20 +1140,25 @@ public class ListTester {
 			printTest(scenarioName + "_testGet1", testGet(scenario.build(), 1, contents[1], Result.MatchingValue));
 			printTest(scenarioName + "_testGet2", testGet(scenario.build(), 2, contents[2], Result.MatchingValue));
 			printTest(scenarioName + "_testGet3", testGet(scenario.build(), 3, null, Result.IndexOutOfBounds));
-			printTest(scenarioName + "_testIndexOf" + contentsString.charAt(2), testIndexOf(scenario.build(), contents[2], 2));
-			printTest(scenarioName + "_testIndexOf" + contentsString.charAt(1), testIndexOf(scenario.build(), contents[1], 1));
-			printTest(scenarioName + "_testIndexOf" + contentsString.charAt(0), testIndexOf(scenario.build(), contents[0], 0));
+			printTest(scenarioName + "_testIndexOf" + contentsString.charAt(0),
+					testIndexOf(scenario.build(), contents[0], 0));
+			printTest(scenarioName + "_testIndexOf" + contentsString.charAt(1),
+					testIndexOf(scenario.build(), contents[1], 1));
+			printTest(scenarioName + "_testIndexOf" + contentsString.charAt(2),
+					testIndexOf(scenario.build(), contents[2], 2));
 			printTest(scenarioName + "_testIndexOfX", testIndexOf(scenario.build(), ELEMENT_X, -1));
 			printTest(scenarioName + "_testFirst", testFirst(scenario.build(), contents[0], Result.MatchingValue));
 			printTest(scenarioName + "_testLast", testLast(scenario.build(), contents[2], Result.MatchingValue));
-			printTest(scenarioName + "_testContains" + contentsString.charAt(2), testContains(scenario.build(), contents[2], Result.True));
-			printTest(scenarioName + "_testContains" + contentsString.charAt(1), testContains(scenario.build(), contents[1], Result.True));
-			printTest(scenarioName + "_testContains" + contentsString.charAt(0), testContains(scenario.build(), contents[0], Result.True));
+			printTest(scenarioName + "_testContains" + contentsString.charAt(1),
+					testContains(scenario.build(), contents[1], Result.True));
+			printTest(scenarioName + "_testContains" + contentsString.charAt(2),
+					testContains(scenario.build(), contents[2], Result.True));
+			printTest(scenarioName + "_testContains" + contentsString.charAt(0),
+					testContains(scenario.build(), contents[0], Result.True));
 			printTest(scenarioName + "_testContainsX", testContains(scenario.build(), ELEMENT_X, Result.False));
 			printTest(scenarioName + "_testIsEmpty", testIsEmpty(scenario.build(), Result.False));
 			printTest(scenarioName + "_testSize", testSize(scenario.build(), 3));
 			printTest(scenarioName + "_testToString", testToString(scenario.build(), Result.ValidString));
-			// IndexedUnsortedList
 
 			// Iterator
 			// TODO: will add in Lab 10
@@ -1777,9 +1794,9 @@ public class ListTester {
 		return result == expectedResult;
 	}
 
-	/////////
+	//
 	// XXX HELPER METHODS FOR TESTING ITERATORS
-	/////////
+	//
 
 	/**
 	 * Helper for testing iterators. Return an Iterator that has been advanced
@@ -1809,10 +1826,10 @@ public class ListTester {
 		return iterator;
 	}
 
-	///////////////////////
+	//////
 	// XXX LISTITERATOR TESTS
 	// Note: can use Iterator tests for hasNext(), next(), and remove()
-	///////////////////////
+	//////
 
 	/**
 	 * Runs listIterator() method on a given list and checks result against
@@ -2157,9 +2174,9 @@ public class ListTester {
 		return result == expectedResult;
 	}
 
-	/////////
+	//
 	// XXX HELPER METHODS FOR TESTING LISTITERATORS
-	/////////
+	//
 
 	/**
 	 * Helper for testing ListIterators. Return a ListIterator that has been
@@ -2203,10 +2220,10 @@ public class ListTester {
 		return iterator;
 	}
 
-	///////
+	//
 	// XXX Iterator Concurrency Tests
 	// Can simply use as given. Don't need to add more.
-	///////
+	//
 
 	/** run Iterator concurrency tests */
 	private void test_IterConcurrency() {
@@ -2528,9 +2545,9 @@ public class ListTester {
 		}
 	}
 
-	///////
+	//
 	// XXX ListIterator Concurrency Tests
-	///////
+	//
 
 	/** run ListIterator concurrency tests */
 	private void test_ListIterConcurrency() {
