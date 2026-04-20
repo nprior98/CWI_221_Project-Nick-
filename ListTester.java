@@ -358,9 +358,9 @@ public class ListTester {
 	 * @return [A] after add(A)
 	 */
 	private IndexedUnsortedList<Integer> emptyList_addA_A() {
-		IndexedUnsortedList<Integer> list = newList();
-		list.add(ELEMENT_A);
-		return list;
+    	IndexedUnsortedList<Integer> list = newList();
+    	list.add(ELEMENT_A);
+    	return list;
 	}
 
 	private Scenario<Integer> emptyList_addA_A = () -> emptyList_addA_A();
@@ -371,9 +371,9 @@ public class ListTester {
 	 * @return [A] after add(0, A)
 	 */
 	private IndexedUnsortedList<Integer> emptyList_add0A_A() {
-		IndexedUnsortedList<Integer> list = newList();
-		list.add(0, ELEMENT_A);
-		return list;
+    	IndexedUnsortedList<Integer> list = newList();
+    	list.add(0, ELEMENT_A);
+    	return list;
 	}
 
 	private Scenario<Integer> emptyList_add0A_A = () -> emptyList_add0A_A();
@@ -436,9 +436,9 @@ public class ListTester {
 	 * @return [] after removeLast()
 	 */
 	private IndexedUnsortedList<Integer> A_removeLast_emptyList() {
-		IndexedUnsortedList<Integer> list = emptyList_addA_A();
-		list.removeLast();
-		return list;
+    	IndexedUnsortedList<Integer> list = emptyList_addA_A();
+    	list.removeLast();
+    	return list;
 	}
 
 	private Scenario<Integer> A_removeLast_emptyList = () -> A_removeLast_emptyList();
@@ -462,9 +462,9 @@ public class ListTester {
 	 * @return [] after remove(0)
 	 */
 	private IndexedUnsortedList<Integer> A_remove0_emptyList() {
-		IndexedUnsortedList<Integer> list = emptyList_addA_A();
-		list.remove(0);
-		return list;
+    	IndexedUnsortedList<Integer> list = emptyList_addA_A();
+    	list.remove(0);
+    	return list;
 	}
 
 	private Scenario<Integer> A_remove0_emptyList = () -> A_remove0_emptyList();
@@ -481,9 +481,9 @@ public class ListTester {
 	 * @return [C,A,B] after addToFront(C)
 	 */
 	private IndexedUnsortedList<Integer> AB_addToFrontC_CAB() {
-		IndexedUnsortedList<Integer> list = A_addToRearB_AB();
-		list.addToFront(ELEMENT_C);
-		return list;
+    	IndexedUnsortedList<Integer> list = A_addToRearB_AB();
+    	list.addToFront(ELEMENT_C);
+    	return list;
 	}
 
 	private Scenario<Integer> AB_addToFrontC_CAB = () -> AB_addToFrontC_CAB();
@@ -494,9 +494,9 @@ public class ListTester {
 	 * @return [A,B,C] after addAfter(C,B)
 	 */
 	private IndexedUnsortedList<Integer> AB_addAfterCB_ABC() {
-		IndexedUnsortedList<Integer> list = A_addToRearB_AB();
-		list.addAfter(ELEMENT_C, ELEMENT_B);
-		return list;
+    	IndexedUnsortedList<Integer> list = A_addToRearB_AB();
+    	list.addAfter(ELEMENT_C, ELEMENT_B);
+    	return list;
 	}
 
 	private Scenario<Integer> AB_addAfterCB_ABC = () -> AB_addAfterCB_ABC();
@@ -513,9 +513,9 @@ public class ListTester {
 	 * @return [B] after removeFirst()
 	 */
 	private IndexedUnsortedList<Integer> AB_removeFirst_B() {
-		IndexedUnsortedList<Integer> list = A_addToRearB_AB();
-		list.removeFirst();
-		return list;
+    	IndexedUnsortedList<Integer> list = A_addToRearB_AB();
+    	list.removeFirst();
+    	return list;
 	}
 
 	private Scenario<Integer> AB_removeFirst_B = () -> AB_removeFirst_B();
@@ -545,9 +545,9 @@ public class ListTester {
 	 * @return [A] after remove(B)
 	 */
 	private IndexedUnsortedList<Integer> AB_removeB_A() {
-		IndexedUnsortedList<Integer> list = A_addToRearB_AB();
-		list.remove(ELEMENT_B);
-		return list;
+    	IndexedUnsortedList<Integer> list = A_addToRearB_AB();
+    	list.remove(ELEMENT_B);
+    	return list;
 	}
 
 	private Scenario<Integer> AB_removeB_A = () -> AB_removeB_A();
@@ -978,9 +978,9 @@ public class ListTester {
 					testAddToFront(scenario.build(), ELEMENT_X, Result.NoException));
 			printTest(scenarioName + "_testAddToRear", testAddToRear(scenario.build(), ELEMENT_X, Result.NoException));
 			printTest(scenarioName + "_testAddAfter" + contentsString.charAt(0),
-					testAddAfter(scenario.build(), contents[0], ELEMENT_X, Result.NoException));
+    			testAddAfter(scenario.build(), contents[0], ELEMENT_X, Result.NoException));
 			printTest(scenarioName + "_testAddAfter" + contentsString.charAt(1),
-					testAddAfter(scenario.build(), contents[1], ELEMENT_X, Result.NoException));
+    			testAddAfter(scenario.build(), contents[1], ELEMENT_X, Result.NoException));
 			printTest(scenarioName + "_testAddAfterX",
 					testAddAfter(scenario.build(), ELEMENT_X, ELEMENT_Z, Result.NoSuchElement));
 			printTest(scenarioName + "_testAdd", testAdd(scenario.build(), ELEMENT_X, Result.NoException));
@@ -1094,6 +1094,8 @@ public class ListTester {
 					testAddAfter(scenario.build(), contents[1], ELEMENT_X, Result.NoException));
 			printTest(scenarioName + "_testAddAfter" + contentsString.charAt(2),
 					testAddAfter(scenario.build(), contents[2], ELEMENT_X, Result.NoException));
+			printTest(scenarioName + "_testAddAfter" + contentsString.charAt(3),
+					testAddAfter(scenario.build(), contents[3], ELEMENT_X, Result.IndexOutOfBounds));
 			printTest(scenarioName + "_testAddAfterX",
 					testAddAfter(scenario.build(), ELEMENT_X, ELEMENT_Z, Result.NoSuchElement));
 			printTest(scenarioName + "_testAdd", testAdd(scenario.build(), ELEMENT_X, Result.NoException));
@@ -1107,8 +1109,6 @@ public class ListTester {
 					testAddAtIndex(scenario.build(), 2, ELEMENT_X, Result.NoException));
 			printTest(scenarioName + "_testAddAtIndex3",
 					testAddAtIndex(scenario.build(), 3, ELEMENT_X, Result.NoException));
-			printTest(scenarioName + "_testAddAtIndex4",
-					testAddAtIndex(scenario.build(), 4, ELEMENT_X, Result.IndexOutOfBounds));
 			printTest(scenarioName + "_testRemoveFirst",
 					testRemoveFirst(scenario.build(), contents[0], Result.MatchingValue));
 			printTest(scenarioName + "_testRemoveLast",
