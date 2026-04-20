@@ -436,7 +436,7 @@ public class ListTester {
 	 * @return [] after removeLast()
 	 */
 	private IndexedUnsortedList<Integer> A_removeLast_emptyList() {
-    	IndexedUnsortedList<Integer> list = newList();
+    	IndexedUnsortedList<Integer> list = emptyList_addA_A();
     	list.removeLast();
     	return list;
 	}
@@ -494,8 +494,8 @@ public class ListTester {
 	 * @return [A,B,C] after addAfter(C,B)
 	 */
 	private IndexedUnsortedList<Integer> AB_addAfterCB_ABC() {
-    	IndexedUnsortedList<Integer> list = newList();
-    	list.add(ELEMENT_C, ELEMENT_B);
+    	IndexedUnsortedList<Integer> list = A_addToRearB_AB();
+    	list.addAfter(ELEMENT_C, ELEMENT_B);
     	return list;
 	}
 
@@ -545,7 +545,7 @@ public class ListTester {
 	 * @return [A] after remove(B)
 	 */
 	private IndexedUnsortedList<Integer> AB_removeB_A() {
-    	IndexedUnsortedList<Integer> list = newList();
+    	IndexedUnsortedList<Integer> list = A_addToRearB_AB();
     	list.remove(0);
     	return list;
 	}
@@ -1084,6 +1084,7 @@ public class ListTester {
 			String contentsString) {
 		System.out.printf("\nSCENARIO: %s\n\n", scenarioName);
 		try {
+			// IndexedUnsortedList
 			printTest(scenarioName + "_testAddToFront",
 					testAddToFront(scenario.build(), ELEMENT_X, Result.NoException));
 			printTest(scenarioName + "_testAddToRear", testAddToRear(scenario.build(), ELEMENT_X, Result.NoException));
