@@ -70,4 +70,3 @@ public class LinearNode<E> {
 		return "Element: " + element.toString() + " Has next: " + (next != null);
 	}
 }
-

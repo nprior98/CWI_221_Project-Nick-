@@ -197,17 +197,19 @@ public class IUSingleLinkedList<E> implements IndexedUnsortedList<E> {
 
 	public Iterator<E> iterator() { return new SLLIterator(); }
 
-	/** Iterator for IUSingleLinkedList */
+	/* Iterator for IUSingleLinkedList */
 	private class SLLIterator implements Iterator<E> {
 		private LinearNode<E> previous, current, next;
 		private int iterModCount;
+        private boolean canRemove;
 		
-		/** Creates a new iterator for the list */
+		/* Creates a new iterator for the list */
 		public SLLIterator() {
 			previous = null;
 			current = null;
 			next = front;
 			iterModCount = modCount;
+            canRemove = false;
 		}
 
 		@Override
@@ -219,16 +221,21 @@ public class IUSingleLinkedList<E> implements IndexedUnsortedList<E> {
 		@Override
 		public E next() {
 			if (!hasNext()) { throw new NoSuchElementException(); }
-            previous = current;
+
+            if (current != null) {
+                previous = current;
+            }
+
             current = next;
             next = next.getNext();
+            canRemove = true;
             return current.getElement();
 		}
 		
 		@Override
 		public void remove() {
 			if (iterModCount != modCount) { throw new ConcurrentModificationException(); }
-            if (current == null) { throw new IllegalStateException(); }
+            if (!canRemove) { throw new IllegalStateException(); }
             
             if (current == front) {
                 front = next;
@@ -241,6 +248,7 @@ public class IUSingleLinkedList<E> implements IndexedUnsortedList<E> {
             }
             
             current = null;
+            canRemove = false;
             count--;
             modCount++;
             iterModCount++;
